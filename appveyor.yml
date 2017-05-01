@@ -1,4 +1,3 @@
-version: 123
 branches:
   only:
   - develop

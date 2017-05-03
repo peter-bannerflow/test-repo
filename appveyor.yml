@@ -1,20 +1,15 @@
-version: 1.2.7.{build}
+version: 1.7.0.{build}
 branches:
   only:
   - develop
   - master
-nuget:
-  account_feed: true
 image: Visual Studio 2015
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
 configuration: Release
 before_build:
-- ps: .\patch-project-json.ps1
-- cmd: >-
-    dotnet restore
-build:
-  verbosity: minimal
-test_script:
-- ps: '& .\run-test-with-coverage.ps1'
-after_test:
-artifacts:
-- path: Artifacts\**\*.zip
+- cmd: build.cmd
